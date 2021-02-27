@@ -191,8 +191,21 @@ def get_cohort_for(filename, name):
     Return:
       - str: the person's cohort or None
     """
+    file_opened = open(filename)
+  
+    for line in file_opened:
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohorts) = line.rstrip().split('|')
 
-    # TODO: replace this with your code
+      if '{} {}'.format(student_f,student_l).lower() == name.lower():
+        return cohorts
+
+    
+
+
 
 
 def find_duped_last_names(filename):
@@ -208,6 +221,21 @@ def find_duped_last_names(filename):
     Return:
       - set[str]: a set of strings
     """
+    file_opened = open(filename)
+    last_names_list = []
+
+    for line in file_opened:
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohorts) = line.rstrip().split('|')
+
+      last_names_list.append(student_l)
+    
+    return set(last_names_list)
+
+
 
     # TODO: replace this with your code
 
