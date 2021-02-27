@@ -32,6 +32,7 @@ def all_houses(filename):
       if houses != '':
         house_list.append(houses)
 
+    file_opened.close()
     #Using set function to return unique houses in file  
     return set(house_list)
 
@@ -81,9 +82,28 @@ def students_by_cohort(filename, cohort='All'):
     """
 
     students = []
+    file_opened = open(filename)
 
-    # TODO: replace this with your code
+    for line in file_opened:
+      student_list = line.rstrip().split('|')
+      
+      #Unpacking student_list and assigning it the corresponding variables
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohorts) = student_list
+      #If statement to check for matching cohort in the second arg 
+      # while removing fake names that don't have a cohort
 
+      if houses != '' and cohort.lower() == cohorts.lower():
+        students.append(student_f + " " + student_l)
+      elif cohort == 'All' and houses != '':
+        students.append(student_f + " " + student_l) 
+
+    # TODO: Create lists for each student seperated by first name, last name, houses, advisors,and cohorts
+    # TODO: If cohort matches the given arg then print the names of students
+    file_opened.close()
     return sorted(students)
 
 
