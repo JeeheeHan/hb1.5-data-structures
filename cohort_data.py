@@ -14,10 +14,31 @@ def all_houses(filename):
     Return:
       - set[str]: a set of strings
     """
+    file_opened = open(filename)
+    
+    house_list = []
+    
+    for line in file_opened:
+      student_list = line.rstrip().split('|')
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohort) = student_list
+      print(student_list)
+    
+#  (order_id,
+#  full_name,
+#  melons_qty,
+#  amt_paid) = [float(data) if data.isdigit() else data for data in order]
+    
 
-    houses = set()
+    houses = set(house_list)
+    print("****************")
 
     # TODO: replace this with your code
+    #
+
 
     return houses
 
