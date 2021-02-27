@@ -3,16 +3,6 @@
 
 def all_houses(filename):
     """Return a set of all house names in the given file.
-
-    For example:
-      >>> unique_houses('cohort_data.txt')
-      {"Dumbledore's Army", 'Gryffindor', ..., 'Slytherin'}
-
-    Arguments:
-      - filename (str): the path to a data file
-
-    Return:
-      - set[str]: a set of strings
     """
     file_opened = open(filename)
     
@@ -55,30 +45,6 @@ def all_houses(filename):
 
 def students_by_cohort(filename, cohort='All'):
     """Return a list of students' full names by cohort.
-
-    Names are sorted in alphabetical order. If a cohort isn't
-    given, return a list of all students. For example:
-      >>> students_by_cohort('cohort_data.txt')
-      ['Adrian Pucey', 'Alicia Spinnet', ..., 'Zacharias Smith']
-
-      >>> students_by_cohort('cohort_data.txt', cohort='Fall 2015')
-      ['Angelina Johnson', 'Cho Chang', ..., 'Terence Higgs', 'Theodore Nott']
-
-      >>> students_by_cohort('cohort_data.txt', cohort='Winter 2016')
-      ['Adrian Pucey', 'Andrew Kirke', ..., 'Roger Davies', 'Susan Bones']
-
-      >>> students_by_cohort('cohort_data.txt', cohort='Spring 2016')
-      ['Cormac McLaggen', 'Demelza Robins', ..., 'Zacharias Smith']
-
-      >>> students_by_cohort('cohort_data.txt', cohort='Summer 2016')
-      ['Alicia Spinnet', 'Dean Thomas', ..., 'Terry Boot', 'Vincent Crabbe']
-
-    Arguments:
-      - filename (str): the path to a data file
-      - cohort (str): optional, the name of a cohort
-
-    Return:
-      - list[list]: a list of lists
     """
 
     students = []
@@ -109,33 +75,6 @@ def students_by_cohort(filename, cohort='All'):
 
 def all_names_by_house(filename):
     """Return a list that contains rosters for all houses, ghosts, instructors.
-
-    Rosters appear in this order:
-    - Dumbledore's Army
-    - Gryffindor
-    - Hufflepuff
-    - Ravenclaw
-    - Slytherin
-    - Ghosts
-    - Instructors
-
-    Each roster is a list of names sorted in alphabetical order.
-
-    For example:
-      >>> rosters = hogwarts_by_house('cohort_data.txt')
-      >>> len(rosters)
-      7
-
-      >>> rosters[0]
-      ['Alicia Spinnet', ..., 'Theodore Nott']
-      >>> rosters[-1]
-      ['Filius Flitwick', ..., 'Severus Snape']
-
-    Arguments:
-      - filename (str): the path to a data file
-
-    Return:
-      - list[list]: a list of lists
     """
 
     dumbledores_army = []
@@ -206,7 +145,28 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
+    file_opened = open(filename)
+  
+    for line in file_opened:
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohorts) = line.rstrip().split('|')
+
+      #Tupling with full name 
+      each_person = tuple([student_f + " " + student_l, houses, advisor, cohorts])
+
+      all_data.append(each_person)
+
+      #Can combine each person into 1 line with the append function 
+      # but to easily read it
+      #assigned it to each_person.
+
+      
+    # TODO: Split each line into a string
+    # TODO: Combine first and last name
+    # TODO: Tuple everything together
 
     return all_data
 
