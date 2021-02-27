@@ -205,9 +205,6 @@ def get_cohort_for(filename, name):
 
     
 
-
-
-
 def find_duped_last_names(filename):
     """Return a set of duplicated last names that exist in the data.
 
@@ -223,7 +220,7 @@ def find_duped_last_names(filename):
     """
     file_opened = open(filename)
     last_names_list = []
-
+    
     for line in file_opened:
       (student_f,
       student_l,
@@ -231,13 +228,21 @@ def find_duped_last_names(filename):
       advisor,
       cohorts) = line.rstrip().split('|')
 
-      last_names_list.append(student_l)
+      last_names_list.append(student_l.lower())
+
+    last_names_list.sort()
+    repeated_names = []
+
+    for i in range(len(last_names_list)-2):
+      if last_names_list[i] == last_names_list[i+1]:
+        repeated_names.append(last_names_list[i].title())
     
-    return set(last_names_list)
+    return set(repeated_names)
+  
 
-
-
-    # TODO: replace this with your code
+    #TODO: sort the last names
+    #TODO; Compare it side by side 
+    #TODO: move into another list :) 
 
 
 def get_housemates_for(filename, name):
@@ -251,8 +256,35 @@ def get_housemates_for(filename, name):
     >>> get_housemates_for('cohort_data.txt', 'Hermione Granger')
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
+    file_opened = open(filename)
+    same_house = []
+    same_cohort = []
+    housemate = []
 
-    # TODO: replace this with your code
+    for line in file_opened:
+      (student_f,
+      student_l,
+      houses,
+      advisor,
+      cohorts) = line.rstrip().split('|')
+
+      if [student_f,student_l] == name.split():
+        same_house = houses
+        same_cohort = cohorts
+        continue
+      elif same_cohort == cohorts and same_house == houses:
+        housemate.append(f"{student_f} {student_l}")
+        
+
+      
+    print(housemate)
+
+  
+
+
+    # TODO: List out the data 
+    # TODO: GEt the arg and cohorts and same house
+    # TODO: match them,
 
 
 ##############################################################################
