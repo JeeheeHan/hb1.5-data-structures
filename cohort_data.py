@@ -20,27 +20,36 @@ def all_houses(filename):
     
     for line in file_opened:
       student_list = line.rstrip().split('|')
+      
+      #Unpacking student_list and assigning it the corresponding variables
       (student_f,
       student_l,
       houses,
       advisor,
       cohort) = student_list
-      print(student_list)
-    
-#  (order_id,
-#  full_name,
-#  melons_qty,
-#  amt_paid) = [float(data) if data.isdigit() else data for data in order]
-    
+      
+      #Pulling student_list[houses] and removing the '' from house_list
+      if houses != '':
+        house_list.append(houses)
 
-    houses = set(house_list)
-    print("****************")
-
-    # TODO: replace this with your code
-    #
+    #Using set function to return unique houses in file  
+    return set(house_list)
 
 
-    return houses
+      # [student_list.pop(student_list[num]) 
+      # if student_list[num] == '' 
+      # else student_list[num]
+      # for num in range(len(student_list)-1)
+
+      #print(student_list)
+      # Another way to write the list comprehension above:
+        # for num in range(len(student_list)-1):
+        #   if student_list[num] == '':
+        #     student_list.pop(student_list[num])
+        #   else:
+        #     student_list[num]
+  
+
 
 
 def students_by_cohort(filename, cohort='All'):
